@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div id="base">
+<h1>ユーザー情報一覧</h1>
+
+<button class="add" routerLink="/user/add">新規登録</button>
+
+<table>
+    <tr><th>Name</th><th>Password</th><th>権限</th><th>備考</th></tr>
+    <tr *ngFor="let user of users | slice : start: start+len">
+        <td><a routerLink="/user/{{user.id}}/edit">{{user.id}}</a></td>
+        <td>{{user.password}}</td>
+        <td><span *ngIf="user.permission_level == 1">管理者</span>
+            <span *ngIf="user.permission_level == 2">ユーザー</span>
+        </td>
+        <td>{{user.note}}</td>
+    </tr>
+</table>
+<ul class="pagenation">
+        <li><button (click)="pager(0)">1</button></li>
+        <li><button (click)="pager(1)">2</button></li>
+        <li><button (click)="pager(2)">3</button></li>
+</ul>
+
+<a routerLink="/menu" class="back">メニューに戻る</a>
+</div>
